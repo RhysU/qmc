@@ -1,0 +1,43 @@
+ChangeLog:
+
+30.10.2003: 0.94 
+  - new dummy option for tcltk widget (which is in the archive)
+  - new parameter management
+  - minor bug fixes
+  - major code changes:
+        submain now in core.cc
+        remdub.cc is not used anymore (eval_dub.cc provides now a better solution)
+  - speed improvements
+  - improved runtime output (verbose parameter)
+
+11.09.2003: 0.93
+  - preparser implemented -> converts "/1" to "0", "/0" to "1" and removes "//"
+  - timer option available
+  - output with astericks (avoid astericks option available)
+  - removed critical bug in core-engine (compare.cc)
+  - some changes in the debug output
+  - minor code changes and some small bugfixes
+
+01.09.2003: 0.92c beta
+  - minor code changes
+  - many bugfixes
+  - functions, vars and file names translated from german to english
+  - blanks in the input string are now ignored
+
+04.05.2002: 0.92 (MS Windows)
+  - Berthold Jaksch created a gui port for MS Windows of Version 0.92
+
+14.06.2001: 0.92b Beta 3
+  - added english comments
+
+21.05.2001: 0.92a Beta 3
+  - minor code changes
+  - improved data output
+
+20.05.2001: 0.92 Beta 3
+  - ported to Linux (thanx to Andreas Romeyke)
+  - development procceds under Linux
+
+
+24.06.2000: 0.9 Beta 3 (DOS)
+  - first working version for MS-DOS

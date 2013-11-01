@@ -1,0 +1,19 @@
+INSTALL EXAMPLE
+
+extract the archive (XX stands for the version string):
+# tar xjvf qmc-XX.tar.bz2
+
+compile the source:
+# cd qmc-XX
+# g++ -Wall -O3 -I. -c *.cc
+# g++ -o qmc *.o
+
+copy the executable to your bin directory
+# cp qmc /bin/
+
+done! show help in order to start work (-:
+#qmc --help
+
+new tcl/tk widget is also located in the source directory
+simply type:
+#wish qmc-gui.tcl

@@ -1,0 +1,123 @@
+/***********************
+ *                     *
+ *     OBJEKTHEADER    *
+ *   Quine-Mc Clusky   *
+ *                     *
+ *   by Thomas Pollak  *
+ *                     *
+ ***********************/
+
+#ifndef qmc_h
+#define qmc_h
+
+#include <cqmc>
+
+using namespace std;
+#endif
+
+#ifndef cqmc
+#define cqmc
+
+  //size of input string
+  #define INPUT_BUFFER_SIZE 128
+
+  //allowed variables
+  #define MAX_NUM_VARS 16
+
+  //Syntax
+  #define SYMB_AND '*'
+  #define SYMB_OR '+'
+  #define SYMB_NOT '/'
+  #define SYMB_BEGIN_SUB '['
+  #define SYMB_END_SUB ']'
+  #define SYMB_TRUE '1'
+  #define SYMB_FALSE '0'
+
+  //Strings
+  #define QMC_VERSION "0.94"
+  #define QMC_URL "http://qmc.pollaknet.at"
+  #define QMC_DATE "30.10.2003"
+
+  //others
+  #define BLANK_CHAR ' '
+
+  //program options
+  #define PROTOCOL          0x0001
+  #define TABLE_INPUT       0x0002
+  #define INTERACTIVE       0x0004
+  #define TIMER             0x0008
+  #define TABLE_OUTPUT      0x0010
+  #define HTML_OUTPUT       0x0020
+  #define AVOID_ASTERICKS   0x0040
+
+
+  //class BOOL
+  class BOOL
+  {
+      bool val;    //boolean value of the BOOL object
+      char id;     //id of BOOL object
+
+    public:
+      BOOL(bool v=0, char i='#');
+      void setvalue(bool v);
+      bool value();
+      void setid(char i);
+      char getid();
+
+      //void operator=(BOOL);
+      //UND Operator
+    /*  friend BOOL operator* (BOOL a, BOOL b);
+      friend BOOL operator* (bool a, BOOL b);
+      friend BOOL operator* (BOOL a, bool b);
+      //ODER Operator
+      friend BOOL operator+ (BOOL a, BOOL b);
+      friend BOOL operator+ (bool a, BOOL b);
+      friend BOOL operator+ (BOOL a, bool b);  */
+      //Nicht Operator
+      void invert();
+  };
+
+  /*************
+   *           *
+   * Prototyps *
+   *           *
+   *************/
+
+  //core function
+  extern int core(char *expression_buffer, unsigned short int options);
+
+  //parser functions
+  extern void remove_blanks(char *buffer, unsigned short int max);
+  extern void preparse(char* buffer);
+
+  //analyse functions
+  extern unsigned char bracket_check(char *term, unsigned char &anz, char *variablen);
+  extern bool analyse(char *term, unsigned char anz, BOOL *var, unsigned char pos1, unsigned char pos2);
+  extern void invert_array(bool *barray, unsigned short int array_length);
+  extern unsigned char param(int argc, char *argv[], unsigned short int &options, char *expression_buffer);
+
+  //engine funtions
+  extern void *compare(BOOL *lh, unsigned char anz, unsigned short &high, unsigned short int options);
+  extern void remdub(BOOL *lh, char anz, unsigned short &high, unsigned short int options);
+  extern bool eval_dub(BOOL *newlh, unsigned short int high, BOOL *lh, unsigned short int comp, unsigned char num_vars);
+
+  //result generator function
+  extern void create_result(BOOL *BO_var, BOOL *lh, unsigned char num_vars, unsigned short high, char *term, bool optimize, unsigned short int options);
+
+
+  //table functions
+  extern void tableinput(BOOL *var, unsigned char anz, unsigned short &high, bool *erg, unsigned short help);
+  extern void tableheadoutput(BOOL *var, unsigned char anz, unsigned short int options);
+  extern void tableoutput(bool value, bool option, unsigned short int options);
+  extern void tabletailoutput(char *minterm);
+
+  //msg functions
+  extern void version_msg(void);
+  extern void help_msg(void);
+  extern void usage_msg(void);
+  extern void syntax_msg(void);
+  extern void verbose_msg(char *msg, unsigned short int options);
+  //extern void errormsg(char *msg, short ecode);
+
+#endif
+
